@@ -1,5 +1,6 @@
 # RecyclerViewEnhanced
-Android Library to provide swipe, click and other functionality to RecyclerView
+Android RecyclerView库提供滑动、点击等其他功能
+原链接地址：https://github.com/nikhilpanju/RecyclerViewEnhanced
 ## Usage
 
 Add this to your build.gradle file
