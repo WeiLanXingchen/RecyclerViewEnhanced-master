@@ -3,9 +3,9 @@ Android RecyclerView库提供滑动、点击等其他功能
 
 
 原链接地址：https://github.com/nikhilpanju/RecyclerViewEnhanced
-## Usage
+## 用法
 
-Add this to your build.gradle file
+将其添加到build.gradle文件中
 
 ```
 dependencies {
@@ -13,34 +13,34 @@ dependencies {
 }
 ```
 
-## Features
-* Supports API 14+ (Earlier APIs not tested
-* Supports any view for "Swipe Options"
-* Doesn't require any new adapters or new views. Works with any existing RecyclerViews.
-* Requires adding `OnItemTouchListener` to the RecyclerView
-* Supports clicking and swiping functionalities.
-* Supports disabling clicking and swiping for particular items/rows.
-* Supports `independentViews` in your items/rows (Read below for more information)
-* Supports `fadeViews` in your items/rows (Read below for more information)
+## 特征
+* 支持API 14+（未经过测试的早期API）
+* 支持“滑动选项”的任何视图
+* 不需要任何新适配器或新视图。适用于任何现有的RecyclerViews。
+* 需要添加 `OnItemTouchListener` 到 RecyclerView
+* 支持单击和滑动功能。
+* 支持禁用特定项目/行的单击和滑动。
+* 支持 `independentViews` 您的item/行（有关详细信息，请参阅下文）
+* 支持 `fadeViews` 您的item/行（有关详细信息，请参阅下文）
 
-## Demo
-Build the sample application to try RecyclerViewEnhanced
+## 演示
+构建示例应用程序以尝试 RecyclerViewEnhanced
 ![alt text](https://github.com/nikhilpanju/RecyclerViewEnhanced/blob/master/sample/src/common/images/Demo.gif "Demo")
 
-## Configuring
-* #### Create an instance of `RecyclerTouchListener`
+## 配置
+* #### 创建一个实例 `RecyclerTouchListener`
   `onTouchListener = new RecyclerTouchListener(this, mRecyclerView);`
   
-* #### Set `IndependentViews` and `FadeViews` (If required)
-  `IndependentViews` are views which can be clicked separately from the entire row. Their clicks have different functionality from row clicks. `FadeViews` are views which fade in and out as the rows are swiped closed and opened respectively.
+* #### 设置 `IndependentViews` 和 `FadeViews` (如果需要的话)
+  `IndependentViews` 是可以从整行单独单击的视图。他们的点击与行点击具有不同的功能。 `FadeViews` 当行被分别打开关闭和打开时，是淡入和淡出的视图。
   
   ```
   onTouchListener.setIndependentViews(R.id.rowButton)
                  .setViewsToFade(R.id.rowButton)               
   ```
   
-* #### Implement `OnRowClickListener` using `setClickable()`
-  `setClickable()` will enable clicks for the recycler view items and the `IndependentViews`
+* #### Implement `OnRowClickListener` 使用 `setClickable()`
+  `setClickable()` 可以点击recyclerView的item和 `IndependentViews`
   
   ```
   .setClickable(new RecyclerTouchListener.OnRowClickListener() {
@@ -56,9 +56,9 @@ Build the sample application to try RecyclerViewEnhanced
         })               
   ```
   
-* #### Enable Swipe Functionality
+* #### 启用滑动功能
 
-  Set the views for which you require a click listener and enable swiping by using `setSwipeable()`
+  设置需要单击侦听器的视图，并使用启用滑动`setSwipeable()`
   ```
   .setSwipeOptionViews(R.id.add, R.id.edit, R.id.change)
   .setSwipeable(R.id.rowFG, R.id.rowBG, new RecyclerTouchListener.OnSwipeOptionsClickListener() {
@@ -75,19 +75,19 @@ Build the sample application to try RecyclerViewEnhanced
        });
   ```
   
-* #### Adding the listener to the RecyclerView
+* #### 将侦听器添加到 RecyclerView
 
-  In `onResume()` add the listener: 
+  在 `onResume()` 添加监听器: 
   ```
   mRecyclerView.addOnItemTouchListener(onTouchListener);
   ```
-  In `onPause()` remove the listener: 
+  在 `onPause()` 删除监听: 
   ```
   mRecyclerView.removeOnItemTouchListener(onTouchListener);
   ```
        
-## Additional Functionality
-* Use `onRowLongClickListener` to receive long click events
+## 附加功能
+* 使用 `onRowLongClickListener` 接收长按事件
   ```
   .setLongClickable(true, new RecyclerTouchListener.OnRowLongClickListener() {
                     @Override
@@ -97,15 +97,15 @@ Build the sample application to try RecyclerViewEnhanced
                 })
   ```
   
-* Use `setUnSwipeableRows()` to disable certain rows from swiping. Using this also displays an "difficult-to-slide" animation when trying to slide an unswipeable row.
-* Use `setUnClickableRows()` to disable click actions for certain rows. (Note: This also prevents the independentViews from being clicked).
-* `openSwipeOptions()` opens the swipe options for a specific row.
-* `closeVisibleBG()` closes any open options.
-* Implement `OnSwipeListener` to get `onSwipeOptionsClosed()` and `onSwipeOptionsOpened()` events.
+* 使用 `setUnSwipeableRows()` 从刷卡禁用某些行。在尝试滑动不可擦除的行时，使用此选项还会显示“难以滑动”的动画。
+* 使用 `setUnClickableRows()` 禁用点击某些行的行动。（注意：这也可以防止单击independentViews）。
+* `openSwipeOptions()` 打开特定行的滑动选项。
+* `closeVisibleBG()`关闭所有打开选项。
+* Implement `OnSwipeListener` 获取 `onSwipeOptionsClosed()` 和 `onSwipeOptionsOpened()` 事件.
 
   
-### Closing swipe options when clicked anywhere outside of the recyclerView:
-* Make your Activity implement `RecyclerTouchListener.RecyclerTouchListenerHelper` and store the touchListener
+### 单击recyclelerView外部的任何位置时关闭滑动选项：
+* 让您的Activity implement `RecyclerTouchListener.RecyclerTouchListenerHelper` 并存储touchListener
 ```
 private OnActivityTouchListener touchListener;
 
@@ -114,7 +114,7 @@ public void setOnActivityTouchListener(OnActivityTouchListener listener) {
     this.touchListener = listener;
 }
 ```
-* Override `dispatchTouchEvent()` of your Activity and pass the `MotionEvent` variable to the `touchListener`
+* Override `dispatchTouchEvent()` 您的Activity并将 `MotionEvent` 变量传递给`touchListener`
 ```
 @Override
 public boolean dispatchTouchEvent(MotionEvent ev) {
@@ -122,21 +122,15 @@ public boolean dispatchTouchEvent(MotionEvent ev) {
         return super.dispatchTouchEvent(ev);
 }
 ```
-## Author
+## 作者
 * Nikhil Panju ([Github](https://github.com/nikhilpanju))
 
 
-## License
-Copyright 2016 Nikhil Panju
+## 执照
+版权所有2016 Nikhil Panju
 
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
+根据Apache许可证2.0版（“许可证”）获得许可; 除非符合许可，否则您不得使用此文件。您可以在以下位置获取许可证副本
 
 ([http://www.apache.org/licenses/LICENSE-2.0](http://www.apache.org/licenses/LICENSE-2.0))
 
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
+除非适用法律要求或书面同意，否则根据许可证分发的软件按“原样”分发，不附带任何明示或暗示的担保或条件。有关管理许可下的权限和限制的特定语言，请参阅许可证。
